@@ -1,0 +1,13 @@
+
+                             <asp:ListItem Value="1">Botella</asp:ListItem>
+                             <asp:ListItem Value="2">Tarro</asp:ListItem>
+                             <asp:ListItem Value="3">Boligrafo</asp:ListItem>
+                             <asp:ListItem Value="4">Hielera</asp:ListItem>
+                             <asp:ListItem Value="5">Estuche de plastico</asp:ListItem>
+                             <asp:ListItem Value="6">Encendedor</asp:ListItem>
+                             <asp:ListItem Value="7">Peine</asp:ListItem>
+                             <asp:ListItem Value="8">Calzador</asp:ListItem>
+                             <asp:ListItem Value="9">Pañuelo</asp:ListItem>
+                             <asp:ListItem Value="10">Agitador</asp:ListItem>
+
+select CLAVE,DESCRIPCION,CVE_PRODUCCION,PROCESO from ct_producto where PROCESO like '%9%' and clave like '%P' and DESCRIPCION like '%BOTELLA%'
