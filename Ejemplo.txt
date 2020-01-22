@@ -1,0 +1,103 @@
+Create table ct_tipoUsuario(id_tipoUsuario int primary key identity (1,1),
+
+							descripcion_tipoUsuario text);
+
+
+Create table ct_areaEmpleo(id_areaEmpleo int primary key identity (1,1),
+							descripcion_areaEmpleo text);
+
+
+create table ct_tipoCapacitacion(id_tipoCapacitacion int primary key identity (1,1),
+								 descripcion_tipoCapacitacion text);
+
+create table tb_Usuario(id_usuario int primary key identity (1,1),
+						nombre text,
+						apellido_paterno text,
+						apellido_materno text,
+						direccion text,
+						correo_electronico text,
+						telefono text,
+						fecha_alta date,
+						tipoUsuario_id int constraint fk_tipoUsuario foreign key (tipoUsuario_id) references ct_tipoUsuario (id_tipoUsuario),
+						areaEmpleo_id int constraint fk_areaEmpleo foreign key (areaEmpleo_id) references ct_areaEmpleo (id_areaEmpleo));
+
+
+create table tb_curso(id_curso int primary key identity (1,1),
+				   nombre_curso text,
+				   empresa_impartidora text,
+				   fecha_inicio date,
+				   fecha_fin date,
+				   nombre_capacitador text,
+				   tipoCapacitacion_id int constraint fk_tipoCapacitacion foreign key (tipoCapacitacion_id) references ct_tipoCapacitacion (id_tipoCapacitacion));
+
+
+create table tb_usuarioCurso(id_usuarioCurso int primary key identity (1,1),
+							 usuario_id int constraint fk_usuario foreign key (usuario_id) references tb_Usuario (id_usuario),
+							 curso_id int constraint fk_curso foreign key (curso_id) references tb_curso (id_curso),
+							 fecha_curso date);
+
+
+
+
+
+
+
+
+
+
+
+insert into ct_tipoUsuario (descripcion_tipoUsuario) values('administrador');
+insert into ct_tipoUsuario (descripcion_tipoUsuario) values('cliente');
+insert into ct_tipoUsuario (descripcion_tipoUsuario) values('empleado');
+
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Gerencia');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Recursos humanos');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Contador');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Vigilante');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Programador');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Mercadotecnia');
+insert into ct_areaEmpleo (descripcion_areaEmpleo) values ('Auxiliar administrativo');
+
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Desarrollo auxiliar');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Marketing Digital');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Economia');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Defensa personal');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Capacitación técnica');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Finanzas');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Programación en .Net');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Programación en Java y Spring');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Desarrollo de BD');
+insert into ct_tipoCapacitacion (descripcion_tipoCapacitacion) values ('Desarrollo móvil');
+
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Alejandro','Duran','Rojas','San Pablo','alex.duran@gmail.com','5574598230','2018-02-01',3,2);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Fernanda','Sosa','Espinoza','San Martín','fernanda.sosa@gmail.com','5569423054','2018-01-02',1,1);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Hector','Gonzalez','Carmona','Chalco','hector.gonzalez@gmail.com','5502469871','2018-09-07',3,4);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Ema','Cortes','Guevara','Tlalmanalco','ema.cortes@gmail.com','5562458620','2018-07-12',3,3);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Edgar','Lopez','Martinez','Xico Nuevo','edgar.lopez@gmail.com','5502964052','2019-01-07',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Lucero','Cadena','Juarez','Cocotitlan','lucero.cadena@gmail.com','5655785014','2019-03-01',3,6);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Samuel','Chavez','Lopez','Chalco','samuel.chavez@gmail.com','5578100025','2019-06-14',3,7);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Luz','Torres','Suarez','Juchitepec','luz.torres@gmail.com','5656527500','2019-09-01',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Sandra','Hernandez','Castillo','Temamatla','sandra.hernandez@gmail.com','5544487852','2019-12-01',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Adrian','Cardenas','Sanchez','Chalco','adrian.cardenas@gmail.com','5510204510','2020-01-02',3,5);
+
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Alejandro','Duran','Rojas','San Pablo','alex.duran@gmail.com','5574598230','2018-02-01',3,2);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Fernanda','Sosa','Espinoza','San Martín','fernanda.sosa@gmail.com','5569423054','2018-01-02',1,1);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Hector','Gonzalez','Carmona','Chalco','hector.gonzalez@gmail.com','5502469871','2018-09-07',3,4);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Ema','Cortes','Guevara','Tlalmanalco','ema.cortes@gmail.com','5562458620','2018-07-12',3,3);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Edgar','Lopez','Martinez','Xico Nuevo','edgar.lopez@gmail.com','5502964052','2019-01-07',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Lucero','Cadena','Juarez','Cocotitlan','lucero.cadena@gmail.com','5655785014','2019-03-01',3,6);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Samuel','Chavez','Lopez','Chalco','samuel.chavez@gmail.com','5578100025','2019-06-14',3,7);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Luz','Torres','Suarez','Juchitepec','luz.torres@gmail.com','5656527500','2019-09-01',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Sandra','Hernandez','Castillo','Temamatla','sandra.hernandez@gmail.com','5544487852','2019-12-01',3,5);
+insert into tb_Usuario(nombre,apellido_paterno,apellido_materno,direccion,correo_electronico,telefono,fecha_alta,tipoUsuario_id,areaEmpleo_id) values('Adrian','Cardenas','Sanchez','Chalco','adrian.cardenas@gmail.com','5510204510','2020-01-02',3,5);
+
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Aprende capacitación técnica','Gerencia S.A de C.V','2018-01-03','2018-06-18','Reyna Sanchez',5);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Desarrollo de Android','Grupo Salinas','2018-01-03','2018-06-18','Diego Rivera',10);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('ASP C#','Interware','2018-06-18','Roberto Martinez',7);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('spring','Grupo Salinas','2018-01-03','2018-06-18','Consuelo Sanchez',8);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Aprende economia desde cero','Santander','2018-01-03','2018-06-18','Alexis Hernandez',3);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Finanzas Master','Banorte','2018-01-03','2018-06-18','Itzana Canales',6);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Conoce las técnicas para defenderte','Escuela de defensa personal','2018-01-03','2018-06-18','Luis Lopez',4);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Diseña marketing nivel profesional','Gerencia S.A de C.V','2018-01-03','2018-06-18','David Rojas',2);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Desarrollo de dispositivos iPhone','Gerencia S.A de C.V','2018-01-03','2018-06-18','Mario Estrada',10);
+insert into tb_curso(nombre_curso,empresa_impartidora,fecha_inicio,fecha_fin,nombre_capacitador,tipoCapacitacion_id) values('Desarrollo de .Net con Oracle','Gerencia S.A de C.V','2018-01-03','2018-06-18','Gael Suarez',7);
