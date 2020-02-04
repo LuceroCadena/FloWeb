@@ -1,0 +1,13 @@
+SELECT dbo.tb_producto_pedido.id_Pedido,dbo.tb_producto_pedido.fecha_autorizacion,
+ dbo.tb_producto_pedido.id_Cliente, dbo.tb_Cliente.NOMBRE_CLIENTE, dbo.ct_producto.CLAVE,
+dbo.tb_producto_pedido.total_piezas,ct_producto.cve_produccion,
+sum(tb_producto_pedido.total_piezas) over(partition by ct_producto.cve_produccion) as total
+FROM dbo.tb_Pedido 
+INNER JOIN dbo.tb_Cliente ON dbo.tb_Pedido.id_cliente = dbo.tb_Cliente.ID_CLIENTE 
+INNER JOIN dbo.tb_producto_pedido ON dbo.tb_Pedido.id_Pedido = dbo.tb_producto_pedido.id_Pedido 
+CROSS JOIN dbo.ct_producto
+where tb_producto_pedido.fecha_autorizacion Between '06-01-2020' and '07-01-2020'
+GROUP BY dbo.tb_producto_pedido.id_Pedido, dbo.tb_producto_pedido.fecha_autorizacion,
+dbo.tb_producto_pedido.id_Cliente, dbo.tb_Cliente.NOMBRE_CLIENTE, dbo.ct_producto.CLAVE,
+dbo.tb_producto_pedido.total_piezas, dbo.ct_producto.CVE_PRODUCCION
+ORDER BY dbo.ct_producto.CLAVE asc,tb_producto_pedido.fecha_autorizacion ASC
